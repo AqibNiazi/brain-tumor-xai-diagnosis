@@ -1,9 +1,6 @@
 import axios from "axios";
 
 // ── Base URL ──────────────────────────────────────────────────────────────
-// Local development  → uncomment the localhost line
-// Production         → replace with your deployed backend URL
-
 const serverBaseURL = "http://127.0.0.1:5000"; // Local
 // const serverBaseURL = "https://your-production-backend.com"; // Production
 
