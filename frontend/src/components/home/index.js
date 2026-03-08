@@ -1,13 +1,5 @@
-import HeroSection from "./HeroSection";
-import FeaturesSection from "./FeaturesSection";
-import ClassesSection from "./ClassesSection";
-import CtaBanner from "./CtaBanner";
-import StatsSection from "./StatsSection";
-
-export {
-  HeroSection,
-  FeaturesSection,
-  ClassesSection,
-  CtaBanner,
-  StatsSection,
-};
+export { default as HeroSection } from "./HeroSection";
+export { default as StatsSection } from "./StatsSection";
+export { default as ClassesSection } from "./ClassesSection";
+export { default as FeaturesSection } from "./FeaturesSection";
+export { default as CtaBanner } from "./CtaBanner";
