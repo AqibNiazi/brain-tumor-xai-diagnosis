@@ -19,7 +19,6 @@
 
 </div>
 
----
 
 ## 📌 Table of Contents
 
@@ -41,7 +40,6 @@
 - [Citation](#-citation)
 - [License](#-license)
 
----
 
 ## 🔬 Overview
 
@@ -56,17 +54,14 @@ The project spans the complete pipeline from raw data to deployment: model train
 - Fully containerised deployment on Hugging Face Spaces (Docker)
 - Research-grade codebase with modular, reusable architecture
 
----
-
 ## 🌐 Live Demo
 
 | Service | URL |
 |---|---|
-| 🖥️ Frontend (Vercel) | `https://your-app.vercel.app` ← *replace after deployment* |
-| ⚙️ Backend API (HF Spaces) | `https://aqibniazi-brain-tumor-detection-api.hf.space` |
-| 📓 Training Notebook (Kaggle) | *Add your Kaggle notebook link here* |
+| 🖥️ Frontend (Vercel) | `https://brain-tumor-xai-diagnosis.vercel.app/` |
+| ⚙️ Backend API (HF Spaces) | `https://aqibniazi-brain-tumor-api.hf.space` |
+| 📓 Training Notebook (Kaggle) | `https://www.kaggle.com/code/maqibniazi/brain-tumor-detection` |
 
----
 
 ## 📸 Screenshots
 
@@ -102,8 +97,6 @@ screenshots/about.png
 ```
 ![About Page](screenshots/about.png)
 
----
-
 ## 🎯 Research Motivation
 
 Brain tumors are among the most life-threatening neurological conditions worldwide. Early and accurate diagnosis is critical to patient outcomes, yet MRI interpretation is a highly specialised skill, and diagnostic errors remain a significant clinical challenge. Deep learning models have demonstrated superhuman performance on many medical imaging tasks — however, their adoption in clinical practice is severely limited by the **black-box** nature of neural networks.
@@ -116,7 +109,6 @@ This project addresses the **interpretability gap** in medical AI by combining s
 
 The goal is to produce a system that a radiologist or researcher can trust, interrogate, and validate — not just use as a black box.
 
----
 
 ## 🏗️ System Architecture
 
@@ -157,18 +149,15 @@ The goal is to produce a system that a radiologist or researcher can trust, inte
 6. Overlay is base64-encoded and returned with prediction JSON
 7. React renders result cards, confidence bar, bar chart, radar chart, and GradCAM heatmap
 
----
-
 ## 📊 Dataset
 
 | Property | Details |
 |---|---|
 | **Name** | Brain Tumor MRI Dataset |
-| **Source** | [Kaggle — maqibniazi/brain-tumor-mri-dataset](https://www.kaggle.com/datasets/maqibniazi/brain-tumor-mri-dataset) |
+| **Original Author** | Masoud Nickparvar |
+| **Source** | [kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset) |
 | **Total Images** | 7,023 MRI scans |
-| **Format** | JPEG / PNG, variable resolution |
-| **Split** | Training / Validation / Test |
-| **Input Resolution** | 224 × 224 (resized during preprocessing) |
+| **License** | As specified by the original author on Kaggle |
 
 **Class Distribution:**
 
@@ -191,8 +180,6 @@ transforms.Compose([
 ])
 ```
 Training augmentations included random horizontal flips and rotations to improve generalisation.
-
----
 
 ## 🤖 Model & Training
 
@@ -233,7 +220,6 @@ for module in model.modules():
 | Pre-trained Weights | ImageNet (torchvision) |
 | Platform | Kaggle (GPU T4 × 2) |
 
----
 
 ## 🔍 Explainability Methods (XAI)
 
@@ -241,11 +227,19 @@ for module in model.modules():
 
 Grad-CAM (Selvaraju et al., 2017) produces class-discriminative localisation maps by computing the gradient of the class score with respect to the final convolutional feature maps.
 
-```
-α_k^c = (1/Z) Σ_i Σ_j  ∂y^c / ∂A^k_ij     (global average pooling of gradients)
+### Grad-CAM Equations
 
-L^c_Grad-CAM = ReLU( Σ_k α_k^c · A^k )     (weighted combination of feature maps)
-```
+The weight for each feature map is computed using global average pooling of gradients:
+
+$$
+\alpha_k^c = \frac{1}{Z} \sum_i \sum_j \frac{\partial y^c}{\partial A_{ij}^k}
+$$
+
+Finally, the Grad-CAM heatmap is obtained by a weighted combination of feature maps followed by ReLU:
+
+$$
+L_{\text{Grad-CAM}}^c = \text{ReLU}\left(\sum_k \alpha_k^c A^k \right)
+$$
 
 **Implementation note:** `register_full_backward_hook` is used instead of the deprecated `register_backward_hook`. Hooks are always removed in a `finally` block to prevent state leakage between requests.
 
@@ -265,7 +259,6 @@ SHAP (Lundberg & Lee, 2017) with the GradientExplainer backend computes Shapley 
 
 Available in the **Kaggle training notebook** only.
 
----
 
 ## 📈 Performance Metrics
 
@@ -280,8 +273,6 @@ Available in the **Kaggle training notebook** only.
 | Trainable Parameters | 23.5M (full fine-tune) |
 
 > *Note: Meningioma achieves the lowest F1-score, consistent with the broader literature — meningiomas exhibit high morphological variability and can visually overlap with other classes on T1-weighted MRI.*
-
----
 
 ## 📁 Project Structure
 
@@ -330,8 +321,6 @@ brain-tumor-xai-diagnosis/
 └── README.md
 ```
 
----
-
 ## ⚙️ Installation & Setup
 
 ### Prerequisites
@@ -343,7 +332,6 @@ brain-tumor-xai-diagnosis/
 | npm | ≥ 9.0 |
 | Git + git-lfs | latest |
 
----
 
 ### 1. Clone the Repository
 
@@ -351,8 +339,6 @@ brain-tumor-xai-diagnosis/
 git clone https://github.com/AqibNiazi/brain-tumor-xai-diagnosis.git
 cd brain-tumor-xai-diagnosis
 ```
-
----
 
 ### 2. Backend Setup
 
@@ -380,8 +366,6 @@ python app.py
 # → Running on http://127.0.0.1:5000
 ```
 
----
-
 ### 3. Frontend Setup
 
 ```bash
@@ -397,7 +381,6 @@ npm run dev
 
 Open `http://localhost:5173` in your browser. The frontend connects to the Flask API at `http://127.0.0.1:5000` automatically.
 
----
 
 ### 4. Training Notebook (Kaggle)
 
@@ -407,14 +390,12 @@ Open `http://localhost:5173` in your browser. The frontend connects to the Flask
 4. Run all cells in order — **do not reorder cells** (SHAP must run after GradCAM hooks are removed)
 5. Download `brain_tumor_model.pth` from `/kaggle/working/`
 
----
 
 ## 📡 API Reference
 
 Base URL (local): `http://127.0.0.1:5000`
-Base URL (production): `https://aqibniazi-brain-tumor-detection-api.hf.space`
+Base URL (production): `https://aqibniazi-brain-tumor-api.hf.space`
 
----
 
 ### `GET /api/health`
 
@@ -428,8 +409,6 @@ Returns server status, compute device, and supported class names.
   "classes": ["glioma", "meningioma", "notumor", "pituitary"]
 }
 ```
-
----
 
 ### `POST /api/predict`
 
@@ -465,7 +444,6 @@ Accepts an MRI image file and returns a classification result with optional Grad
 | `400` | No file field, empty filename, or unsupported file type |
 | `500` | Inference error (model or GradCAM failure) |
 
----
 
 ## 🛠️ Technology Stack
 
@@ -489,7 +467,6 @@ Accepts an MRI image file and returns a classification result with optional Grad
 | **Deployment** | Vercel | — | Frontend hosting |
 | **Training** | Kaggle (GPU T4 × 2) | — | Model training environment |
 
----
 
 ## 🗺️ Roadmap
 
@@ -507,7 +484,6 @@ Accepts an MRI image file and returns a classification result with optional Grad
 - [ ] 3D MRI volume support (volumetric CNN or ViT backbone)
 - [ ] Peer-reviewed publication
 
----
 
 ## 🤝 Contributing
 
@@ -521,7 +497,6 @@ Contributions from the research and developer community are welcome. Please foll
 
 For major changes or research extensions, please open an Issue first to discuss the proposed direction.
 
----
 
 ## 📖 Citation
 
@@ -529,7 +504,7 @@ If you use this codebase or reference this work in your research, please cite it
 
 ```bibtex
 @software{niazi2026neurascan,
-  author    = {Niazi, Muhammad Aqib},
+  author    = {Javed, Muhammad Aqib},
   title     = {NeuraScan: An Explainable AI System for Brain Tumor Classification
                from MRI Scans using ResNet50, Grad-CAM, LIME, and SHAP},
   year      = {2026},
@@ -537,6 +512,18 @@ If you use this codebase or reference this work in your research, please cite it
   note      = {Software available at GitHub}
 }
 ```
+## 🙏 Acknowledgements
+
+The MRI dataset used in this project was sourced from Kaggle and belongs 
+to its original author. This project uses it strictly for academic and 
+non-commercial research purposes.
+
+- **Dataset:** Brain Tumor MRI Dataset by Masoud Nickparvar  
+  → https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
+
+- **Original paper this dataset references:**  
+  Cheng, J. (2017). Brain Tumor Dataset. figshare.  
+  → https://doi.org/10.6084/m9.figshare.1512427.v5
 
 **Referenced Works:**
 
@@ -545,7 +532,6 @@ If you use this codebase or reference this work in your research, please cite it
 - Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). "Why should I trust you?": Explaining the predictions of any classifier. *KDD 2016*.
 - Lundberg, S. M., & Lee, S. I. (2017). A unified approach to interpreting model predictions. *NeurIPS 2017*.
 
----
 
 ## 📄 License
 
@@ -553,7 +539,6 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 The dataset used for training is subject to its own terms on Kaggle. This software may not be used for clinical diagnosis without appropriate regulatory approval.
 
----
 
 <div align="center">
 
