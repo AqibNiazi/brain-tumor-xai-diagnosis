@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // ── Base URL ──────────────────────────────────────────────────────────────
-const serverBaseURL = "http://127.0.0.1:5000"; // Local
-// const serverBaseURL = "https://your-production-backend.com"; // Production
+// const serverBaseURL = "http://127.0.0.1:5000"; // Local
+const serverBaseURL = import.meta.env.VITE_API_URL
 
 const clientBaseURL = axios.create({
   baseURL: serverBaseURL,
