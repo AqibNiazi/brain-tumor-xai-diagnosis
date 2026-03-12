@@ -58,43 +58,31 @@ The project spans the complete pipeline from raw data to deployment: model train
 
 | Service | URL |
 |---|---|
-| 🖥️ Frontend (Vercel) | `https://brain-tumor-xai-diagnosis.vercel.app/` |
-| ⚙️ Backend API (HF Spaces) | `https://aqibniazi-brain-tumor-api.hf.space` |
-| 📓 Training Notebook (Kaggle) | `https://www.kaggle.com/code/maqibniazi/brain-tumor-detection` |
+| 🖥️ Frontend (Vercel) | [https://brain-tumor-xai-diagnosis.vercel.app/](https://brain-tumor-xai-diagnosis.vercel.app/) |
+| ⚙️ Backend API (HF Spaces) | [https://aqibniazi-brain-tumor-api.hf.space](https://aqibniazi-brain-tumor-api.hf.space) |
+| 📓 Training Notebook (Kaggle) | [https://www.kaggle.com/code/maqibniazi/brain-tumor-detection](https://www.kaggle.com/code/maqibniazi/brain-tumor-detection) |
 
 
 ## 📸 Screenshots
 
-> Add your screenshots to a `screenshots/` folder in the root of this repository and update the paths below.
-
 ### Diagnostic Terminal — Home
-```
-screenshots/home.png
-```
+
 ![Home Page](screenshots/home.png)
 
 ### MRI Upload & Inference
-```
-screenshots/predict.png
-```
+
 ![Predict Page](screenshots/predict.png)
 
 ### Grad-CAM Overlay & Results
-```
-screenshots/gradcam_result.png
-```
+
 ![GradCAM Results](screenshots/gradcam_result.png)
 
 ### Probability Distribution Charts
-```
-screenshots/charts.png
-```
+
 ![Probability Charts](screenshots/charts.png)
 
 ### About & Methodology
-```
-screenshots/about.png
-```
+
 ![About Page](screenshots/about.png)
 
 ## 🎯 Research Motivation
