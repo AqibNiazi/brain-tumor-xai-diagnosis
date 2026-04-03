@@ -43,7 +43,7 @@
 
 ## 🔬 Overview
 
-**NeuraScan** is a full-stack, interpretable deep learning system designed to assist researchers and clinicians in the classification of brain tumors from MRI scans. The system integrates a fine-tuned **ResNet50** convolutional neural network with three complementary **Explainable AI (XAI)** techniques — **Grad-CAM**, **LIME**, and **SHAP** — to provide not only accurate predictions but also transparent, human-interpretable visual explanations for each decision.
+**NeuraScan** is a full-stack, interpretable deep learning system designed to assist researchers and clinicians in the classification of brain tumors from MRI scans. The system integrates a fine-tuned **ResNet50** convolutional neural network with three complementary **Explainable AI (XAI)** techniques **Grad-CAM**, **LIME**, and **SHAP** to provide not only accurate predictions but also transparent, human-interpretable visual explanations for each decision.
 
 The project spans the complete pipeline from raw data to deployment: model training in a Jupyter notebook on Kaggle, a production-ready **Flask REST API** backend, and an interactive **React + Tailwind CSS** frontend styled as a diagnostic terminal interface.
 
@@ -87,7 +87,7 @@ The project spans the complete pipeline from raw data to deployment: model train
 
 ## 🎯 Research Motivation
 
-Brain tumors are among the most life-threatening neurological conditions worldwide. Early and accurate diagnosis is critical to patient outcomes, yet MRI interpretation is a highly specialised skill, and diagnostic errors remain a significant clinical challenge. Deep learning models have demonstrated superhuman performance on many medical imaging tasks — however, their adoption in clinical practice is severely limited by the **black-box** nature of neural networks.
+Brain tumors are among the most life-threatening neurological conditions worldwide. Early and accurate diagnosis is critical to patient outcomes, yet MRI interpretation is a highly specialised skill, and diagnostic errors remain a significant clinical challenge. Deep learning models have demonstrated superhuman performance on many medical imaging tasks however, their adoption in clinical practice is severely limited by the **black-box** nature of neural networks.
 
 This project addresses the **interpretability gap** in medical AI by combining state-of-the-art classification performance with three distinct XAI techniques that generate human-readable explanations at different levels of granularity:
 
@@ -491,7 +491,7 @@ For major changes or research extensions, please open an Issue first to discuss 
 If you use this codebase or reference this work in your research, please cite it as:
 
 ```bibtex
-@software{niazi2026neurascan,
+@software{neurascan,
   author    = {Javed, Muhammad Aqib},
   title     = {NeuraScan: An Explainable AI System for Brain Tumor Classification
                from MRI Scans using ResNet50, Grad-CAM, LIME, and SHAP},
